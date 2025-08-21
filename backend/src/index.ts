@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import mongoose from 'mongoose';
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
@@ -12,14 +13,12 @@ async function start() {
   try {
     console.log('Connecting to MongoDB...', MONGO_URI);
     await mongoose.connect(MONGO_URI, {
-      // mongoose v6+ options are handled by mongoose; add any needed here
-      // e.g. serverSelectionTimeoutMS: 5000 to fail faster
       serverSelectionTimeoutMS: 5000,
     });
     console.log('MongoDB connected');
   } catch (err) {
     console.error('MongoDB connection failed', err);
-    process.exit(1); // stop startup so resolvers don't buffer
+    process.exit(1); 
   }
   
   const server = new ApolloServer({ typeDefs, resolvers });
