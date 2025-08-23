@@ -9,23 +9,22 @@ const typeDefs = `#graphql
 
   type Query {
     health: String!
-
     questions(limit: Int, offset: Int): [Question!]!
   }
 
-  type Mutation {
-    createQuestion(input: CreateQuestionInput!): Question!
-    updateQuestion(id: ID!, input: UpdateQuestionInput!): Question!
-    deleteQuestion(id: ID!): Boolean!
+  # type Mutation {
+  #   # createQuestion(input: CreateQuestionInput!): Question!
+  #   # updateQuestion(id: ID!, input: UpdateQuestionInput!): Question!
+  #   # deleteQuestion(id: ID!): Boolean!
 
-    createUser(input: CreateUserInput!): User!
-    updateUser(id: ID!, input: UpdateUserInput!): User!
-    deleteUser(id: ID!): Boolean!
+  #   # createUser(input: CreateUserInput!): User!
+  #   # updateUser(id: ID!, input: UpdateUserInput!): User!
+  #   # deleteUser(id: ID!): Boolean!
 
-    createQuote(input: CreateQuoteInput!): Quote!
-    updateQuote(id: ID!, input: UpdateQuoteInput!): Quote!
-    deleteQuote(id: ID!): Boolean!
-  }
+  #   # createQuote(input: CreateQuoteInput!): Quote!
+  #   # updateQuote(id: ID!, input: UpdateQuoteInput!): Quote!
+  #   # deleteQuote(id: ID!): Boolean!
+  # }
 `;
 
 export default typeDefs;

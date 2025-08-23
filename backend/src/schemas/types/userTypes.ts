@@ -6,4 +6,18 @@ type User {
   frequency: String
   createdAt: String!
 }
+
+input RegisterInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+type Query {
+  getUserById(id: ID!): User
+}
+
+type Mutation {
+  registerUser(input: RegisterInput!): User
+}
 `;
