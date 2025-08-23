@@ -12,19 +12,10 @@ const typeDefs = `#graphql
     questions(limit: Int, offset: Int): [Question!]!
   }
 
-  # type Mutation {
-  #   # createQuestion(input: CreateQuestionInput!): Question!
-  #   # updateQuestion(id: ID!, input: UpdateQuestionInput!): Question!
-  #   # deleteQuestion(id: ID!): Boolean!
-
-  #   # createUser(input: CreateUserInput!): User!
-  #   # updateUser(id: ID!, input: UpdateUserInput!): User!
-  #   # deleteUser(id: ID!): Boolean!
-
-  #   # createQuote(input: CreateQuoteInput!): Quote!
-  #   # updateQuote(id: ID!, input: UpdateQuoteInput!): Quote!
-  #   # deleteQuote(id: ID!): Boolean!
-  # }
+  type Mutation {
+    # MVP: trigger an immediate email delivery without auth
+    sendQuote(email: String!, explicit: Boolean!): Boolean!
+  }
 `;
 
 export default typeDefs;

@@ -226,9 +226,27 @@ Pick one and implement:
 
 - Auth path: NextAuth magic link (FE-first) vs BE-issued magic link?  
 - Hosting choice for BE: Render vs Railway?  
-- Scheduler engine: Agenda (Mongo-backed) vs node-cron?
+- Scheduler engine: Agenda Message Queue in Node.js with BullMQ and Redis
 
 # Status
 
 - Backlog created and prioritized.  
 - Next actionable step: confirm auth and hosting choices; then work on the exact edits to add `sendQuote` mutation and FE integration to get a live MVP.
+
+# Todo status
+- __[completed]__ infra-001 Decide hosting targets
+- __[in_progress]__ infra-002 Env var schema/docs
+- __[in_progress]__ be-003 Containerize/start script (start script done; Docker next)
+- __[in_progress]__ be-005 Harden server (CORS/Helmet/Logging to add)
+- __[in_progress]__ be-006 Schema mutations (sendQuote added; auth/subscription later)
+- __[in_progress]__ be-007 Resolvers (sendQuote added; others later)
+- __[in_progress]__ svc-008 Email service (inline for now; will refactor to services/email.ts)
+- __[in_progress]__ fe-012 FE GraphQL integration (landing wired)
+
+# Recommend next PRs
+- __PR-1__: CORS/Helmet/Pino + /healthz in 
+backend/src/index.ts
+- __PR-2__: Extract services/email.ts and unit test it; add simple error logging.
+- __PR-3__: NextAuth email provider wiring on FE.
+- __PR-4__: Railway deploy for API; Vercel deploy for FE.
+- __PR-5__: Redis provision + BullMQ skeleton (queue + worker).

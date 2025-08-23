@@ -12,15 +12,28 @@ export default function TimerDisplay() {
   }, []);
 
   const formatted = `00:${seconds.toString().padStart(2, "0")}`;
+  const isCritical = seconds <= 10;
+  const progressPercent = ((60 - seconds) / 60) * 100; // 0% -> 100%
 
   return (
     <div className="relative flex justify-center items-center w-40 h-40">
-      {/* animated ring */}
-      <div className="absolute w-full h-full rounded-full border-[6px] border-red-500 animate-spin-slow opacity-70" />
-      
-      
+      {/* progress ring: fills from black to red as time elapses */}
+      <div
+        className="absolute inset-0 rounded-full progress-ring"
+        style={{ ['--p' as any]: `${progressPercent}%` }}
+        aria-hidden="true"
+      />
+
+      {/* inner disc to create ring cutout */}
+      <div className="absolute inset-[6px] rounded-full bg-black/90 ring-1 ring-white/10" aria-hidden="true" />
+
+      {/* urgent pulse overlay in last 10s */}
+      {isCritical && (
+        <div className="absolute inset-0 rounded-full critical-pulse" aria-hidden="true" />
+      )}
+
       {/* timer text */}
-      <div className="text-white text-4xl font-mono z-10">
+      <div className="text-white text-4xl font-mono z-10 select-none">
         {formatted}
       </div>
     </div>

@@ -19,7 +19,7 @@ export function ZeroDopamineHeader({ className }: { className?: string }) {
   return (
     <header
       className={cn(
-        'flex justify-between items-center w-full px-4 py-3 text-white bg-black',
+        'sticky top-0 z-50 flex justify-between items-center w-full px-4 py-3 text-white border-b border-white/10 backdrop-blur supports-[backdrop-filter]:bg-black/80',
         className
       )}
     >
