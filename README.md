@@ -35,7 +35,7 @@ It serves one mission: deliver cold, hard motivation in the voice of your inner 
 
 ## Core Features
 
-### ✅ MVP (v1)
+### ✅ Done (v1.x - Frontend)
 - [x] Countdown & modal with surprise quote
 - [x] Explicit mode toggle
 - [x] Email input + delivery
@@ -44,8 +44,10 @@ It serves one mission: deliver cold, hard motivation in the voice of your inner 
 - [x] MongoDB + GraphQL backend
 - [x] TailwindCSS custom animations
 
-### 🔮 Future
+### TO BE DONE
 - [ ] Auth via email magic link or OTP
+- [ ] make the component exist on frontend to send the quote to the user
+- [ ] the component should be able to be used on the browser of the user (either an extension of even an executable app)
 - [ ] Logged-in dashboard with quote history
 - [ ] Stripe customer portal
 - [ ] Delivery scheduler engine
