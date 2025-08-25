@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Switch } from '@/components/ui/switch'
@@ -27,6 +27,24 @@ export default function HomePage() {
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState<string | null>(null)
   const [registered, setRegistered] = useState(false)
+  const [pulse, setPulse] = useState(false)
+  const emailRef = useRef<HTMLInputElement | null>(null)
+
+  // Auto-focus email on mount (and when unregistered)
+  useEffect(() => {
+    if (!registered) {
+      emailRef.current?.focus()
+    }
+  }, [registered])
+
+  // Briefly pulse the success badge when registered flips to true
+  useEffect(() => {
+    if (registered) {
+      setPulse(true)
+      const t = setTimeout(() => setPulse(false), 900)
+      return () => clearTimeout(t)
+    }
+  }, [registered])
 
   const handleSubmit = async () => {
     setMessage(null)
@@ -42,6 +60,10 @@ export default function HomePage() {
       if (data?.registerUser?._id) {
         setMessage('You’re in. We’ll nudge you soon.')
         setRegistered(true)
+        // Light haptic feedback on success (supported on some devices)
+        if (typeof window !== 'undefined' && 'vibrate' in navigator) {
+          try { (navigator as any).vibrate?.(20) } catch {}
+        }
       } else {
         setMessage('Could not save your preference. Try again in a minute.')
       }
@@ -69,7 +91,7 @@ export default function HomePage() {
         <span className="text-gray-500 italic"> Pain is just a moment.</span>
         </p>
         {registered && (
-          <div className="mt-2 inline-flex items-center gap-2 rounded-md bg-green-600/10 text-green-400 px-3 py-1 text-sm">
+          <div className={`mt-2 inline-flex items-center gap-2 rounded-md bg-green-600/10 text-green-400 px-3 py-1 text-sm ${pulse ? 'animate-pulse' : ''}`}>
             <span className="h-2 w-2 rounded-full bg-green-400"></span>
             Registered. You’ll get pushes when it matters.
           </div>
@@ -98,6 +120,13 @@ export default function HomePage() {
           onChange={(e) => setEmail(e.target.value)}
           className="flex-1"
           disabled={registered || loading}
+          ref={emailRef}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && !loading && !registered) {
+              e.preventDefault()
+              handleSubmit()
+            }
+          }}
         />
         <Button onClick={handleSubmit} disabled={loading || registered}>
           {registered ? 'You’re in' : loading ? 'Saving…' : 'WAKE ME UP!'}
