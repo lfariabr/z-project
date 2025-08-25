@@ -16,3 +16,9 @@ db.getCollectionNames()
 
 4. Create a test
 db.questions.insertOne({ modelUsed: "test", text: "Hello?", userEmail: "test@example.com" })
+
+
+---
+
+Localhost:
+brew services start mongodb-community@6.0
