@@ -5,7 +5,7 @@ import { Timer } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function ZeroDopamineHeader({ className }: { className?: string }) {
-  const [seconds, setSeconds] = useState(59);
+  const [seconds, setSeconds] = useState(60);
 
   useEffect(() => {
     const interval = setInterval(() => {
