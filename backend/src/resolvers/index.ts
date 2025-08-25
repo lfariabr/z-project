@@ -1,4 +1,7 @@
 import {questionQueries} from './questions/queries.js'
+import { getUserById } from './users/queries/getUserById.js'
+import { listUsers } from './users/queries/listUsers.js'
+import { registerUser } from './users/mutations/registerUser.js'
 
 const RESEND_API_URL = 'https://api.resend.com/emails'
 
@@ -38,6 +41,9 @@ const resolvers = {
 	Query: {
 		health: () => 'ok',
 		...questionQueries,
+		// Users
+		getUserById,
+		listUsers,
 	},
 	Mutation: {
 		// MVP mutation: send motivational email immediately
@@ -58,6 +64,8 @@ const resolvers = {
 			const ok = await sendEmailViaResend({ to: email, subject, html })
 			return !!ok
 		},
+		// Create or update a user subscription preferences
+		registerUser,
 	},
 };
 
