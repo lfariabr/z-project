@@ -8,9 +8,16 @@ import { Label } from '@/components/ui/label'
 import CountdownCircle from "@/components/CountdownCircle";
 import { graphqlRequest } from '@/lib/graphql'
 
-const SEND_QUOTE_MUTATION = `#graphql
-  mutation SendQuote($email: String!, $explicit: Boolean!) {
-    sendQuote(email: $email, explicit: $explicit)
+const REGISTER_USER_MUTATION = `#graphql
+  mutation RegisterUser($input: RegisterInput!) {
+    registerUser(input: $input) {
+      _id
+      email
+      name
+      isExplicit
+      subscribed
+      createdAt
+    }
   }
 `;
 
@@ -19,6 +26,7 @@ export default function HomePage() {
   const [explicitMode, setExplicitMode] = useState(false)
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState<string | null>(null)
+  const [registered, setRegistered] = useState(false)
 
   const handleSubmit = async () => {
     setMessage(null)
@@ -28,17 +36,17 @@ export default function HomePage() {
     }
     try {
       setLoading(true)
-      const data = await graphqlRequest<{ sendQuote: boolean }>(SEND_QUOTE_MUTATION, {
-        email,
-        explicit: explicitMode,
+      const data = await graphqlRequest<{ registerUser: { _id: string } }>(REGISTER_USER_MUTATION, {
+        input: { email, isExplicit: explicitMode }
       })
-      if (data.sendQuote) {
-        setMessage('Sent. Check your inbox in the next minute.')
+      if (data?.registerUser?._id) {
+        setMessage('You’re in. We’ll nudge you soon.')
+        setRegistered(true)
       } else {
-        setMessage('We couldn’t send it. Try again in a minute.')
+        setMessage('Could not save your preference. Try again in a minute.')
       }
     } catch (err: any) {
-      setMessage(err?.message ?? 'We couldn’t send it. Try again in a minute.')
+      setMessage(err?.message ?? 'Could not save your preference. Try again in a minute.')
     } finally {
       setLoading(false)
     }
@@ -57,17 +65,24 @@ export default function HomePage() {
         <p className="text-gray-300">
         Every second, a voice whispers: <span className="text-red-500 font-bold">quit</span>.<br />
         But in that one second — <span className="text-white font-bold">you choose</span>.<br /><br />
-        <span className="text-gray-300">Regret lasts a lifetime.</span>
+        <span className="text-gray-300">Regret lasts a lifetime.</span><br />
         <span className="text-gray-500 italic"> Pain is just a moment.</span>
         </p>
+        {registered && (
+          <div className="mt-2 inline-flex items-center gap-2 rounded-md bg-green-600/10 text-green-400 px-3 py-1 text-sm">
+            <span className="h-2 w-2 rounded-full bg-green-400"></span>
+            Registered. You’ll get pushes when it matters.
+          </div>
+        )}
       </div>
 
       {/* TONE TOGGLE */}
       <div className="flex items-center gap-4 mb-6">
         <Switch
           checked={explicitMode}
-          onCheckedChange={() => setExplicitMode(!explicitMode)}
+          onCheckedChange={() => !registered && setExplicitMode(!explicitMode)}
           id="explicit-mode"
+          disabled={registered || loading}
         />
         <Label htmlFor="explicit-mode" className="text-xs">
           🔥 Unfiltered: profanity & aggressive tone. Opt in if you’re sure.
@@ -82,9 +97,10 @@ export default function HomePage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="flex-1"
+          disabled={registered || loading}
         />
-        <Button onClick={handleSubmit} disabled={loading}>
-          {loading ? 'Sending your wake‑up call…' : 'WAKE ME UP!'}
+        <Button onClick={handleSubmit} disabled={loading || registered}>
+          {registered ? 'You’re in' : loading ? 'Saving…' : 'WAKE ME UP!'}
         </Button>
       </div>
       <p className="w-full max-w-md text-xs text-gray-400 mt-2 text-left">No spam. 1 click to unsubscribe.</p>
@@ -92,6 +108,15 @@ export default function HomePage() {
       {message && (
         <p className="mt-4 text-sm text-gray-300">{message}</p>
       )}
+
+      {/* Tiny footer */}
+      <div className="mt-10 text-xs text-gray-500">
+        <span className="hover:text-gray-300 cursor-pointer">Terms</span>
+        <span className="mx-2">•</span>
+        <span className="hover:text-gray-300 cursor-pointer">Privacy</span>
+        <span className="mx-2">•</span>
+        <span className="hover:text-gray-300 cursor-pointer">Contact</span>
+      </div>
     </main>
   )
 }
