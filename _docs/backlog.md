@@ -7,8 +7,8 @@
 - [ ] Configure nginx
 - [ ] Configure SSL
 - [ ] Configure certbot
-- [ ] Create 1x TY for sub email
-- [ ] Create 1x Week 1 content email
+- [X] Create 1x TY for sub email
+- [X] Create 1x Week 1 content email
 
 ## BACKLOG
 - Plug in Resend for triggering
