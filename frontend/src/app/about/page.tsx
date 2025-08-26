@@ -1,6 +1,7 @@
 'use client'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
+import { Button } from "@/components/ui/button"
 
 export default function About() {
   return (
@@ -24,6 +25,40 @@ export default function About() {
           </span>{" "}
           that hijack your discipline, drain your focus, and keep you trapped in the loop of instant gratification.
         </p>
+      </section>
+
+      {/* Project Purpose */}
+      <section className="mt-12">
+        <h2 className="text-lg font-semibold text-white">
+          Why this project exists
+        </h2>
+        <p className="mt-3 text-base text-gray-300">
+          This site is a simple hub for subscribers who receive one weekly email:
+          pure motivation, free from the noise of modern feeds. No edits, no
+          background music, no dopamine traps. Just raw, actionable wisdom
+          designed to sharpen your mindset and strengthen discipline.
+        </p>
+        <p className="mt-4 text-base text-gray-300">
+          It’s not about hype—it’s about truth. A reminder each week to stay
+          focused, to do the work, and to build resilience when it matters most.
+        </p>
+      </section>
+
+      {/* Closing */}
+      <section className="mt-10">
+        <h2 className="text-lg font-semibold text-white">
+          The Mission
+        </h2>
+        <p className="mt-3 text-base text-gray-300">
+          Deliver clarity in a world overloaded with noise, and help you train the discipline to finish what you start.
+        </p>
+        <div className="mt-6 flex justify-center">
+          <Link href="/" passHref>
+            <Button size="lg" className="bg-white/10 hover:bg-white/20 text-white">
+              Subscribe to our Initiative
+            </Button>
+          </Link>
+        </div>
       </section>
 
       {/* The Traps */}
@@ -101,11 +136,14 @@ export default function About() {
             Earn your dopamine through effort, not shortcuts.
           </span>
         </p>
+        <div className="mt-6 flex justify-center">
+        <Link href="/" passHref>
+          <Button size="lg" className="bg-white/10 hover:bg-white/20 text-white">
+            Join the Movement
+          </Button>
+        </Link>
+      </div>
       </section>
-      {/* Back to home */}
-      <Link href="/" className="mt-10 block text-sm text-gray-400 hover:text-gray-300">
-        Back to home
-      </Link>
       <Footer center />
     </div>
   )
