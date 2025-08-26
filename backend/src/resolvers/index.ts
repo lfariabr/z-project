@@ -46,7 +46,7 @@ const resolvers = {
 		listUsers,
 	},
 	Mutation: {
-		// MVP mutation: send motivational email immediately
+
 		async sendQuote(_: unknown, args: { email: string; explicit: boolean }) {
 			const { email, explicit } = args
 			if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -64,7 +64,7 @@ const resolvers = {
 			const ok = await sendEmailViaResend({ to: email, subject, html })
 			return !!ok
 		},
-		// Create or update a user subscription preferences
+
 		registerUser,
 	},
 };

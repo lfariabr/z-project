@@ -7,6 +7,7 @@ import { Switch } from '@/components/ui/switch'
 import { Label } from '@/components/ui/label'
 import CountdownCircle from "@/components/CountdownCircle";
 import { graphqlRequest } from '@/lib/graphql'
+import Footer from '@/components/Footer'
 
 const REGISTER_USER_MUTATION = `#graphql
   mutation RegisterUser($input: RegisterInput!) {
@@ -139,13 +140,7 @@ export default function HomePage() {
       )}
 
       {/* Tiny footer */}
-      <div className="mt-10 text-xs text-gray-500">
-        <span className="hover:text-gray-300 cursor-pointer">Terms</span>
-        <span className="mx-2">•</span>
-        <span className="hover:text-gray-300 cursor-pointer">Privacy</span>
-        <span className="mx-2">•</span>
-        <span className="hover:text-gray-300 cursor-pointer">Contact</span>
-      </div>
+      <Footer />
     </main>
   )
 }
