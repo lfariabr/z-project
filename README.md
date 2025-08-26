@@ -13,7 +13,6 @@ It serves one mission: deliver cold, hard motivation in the voice of your inner 
 - 🕒 Daily/weekly/monthly motivational quotes
 - 💬 Choose clean or explicit tone
 - 📨 Delivered on-screen and via email
-- 🔐 Subscription-based with $1/week tier
 - 📊 Dashboard to manage settings, track delivery
 
 ---
@@ -43,6 +42,7 @@ It serves one mission: deliver cold, hard motivation in the voice of your inner 
 - [x] TailwindCSS custom animations
 
 ### TO BE DONE
+- [ ] Add websocket for subscription events
 - [ ] Auth via email magic link or OTP
 - [ ] Logged-in dashboard with quote history
 - [ ] Delivery scheduler engine
