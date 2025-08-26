@@ -1,19 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCountdown } from "@/lib/countdown";
 
 export default function TimerDisplay() {
-  const [seconds, setSeconds] = useState(60);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSeconds((prev) => (prev > 0 ? prev - 1 : 59));
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const formatted = `00:${seconds.toString().padStart(2, "0")}`;
-  const isCritical = seconds <= 10;
-  const progressPercent = ((60 - seconds) / 60) * 100; // 0% -> 100%
+  const { formatted, isCritical, progressPercent } = useCountdown();
 
   return (
     <div className="relative flex justify-center items-center w-40 h-40">

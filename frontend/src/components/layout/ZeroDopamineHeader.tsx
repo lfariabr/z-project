@@ -1,20 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { Timer } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Link from 'next/link'
+import { useCountdown } from '@/lib/countdown';
 
 export function ZeroDopamineHeader({ className }: { className?: string }) {
-  const [seconds, setSeconds] = useState(60);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSeconds((prev) => (prev > 0 ? prev - 1 : 59));
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const formatted = `00:${seconds.toString().padStart(2, '0')}`;
+  const { formatted } = useCountdown();
 
   return (
     <header
@@ -23,7 +15,7 @@ export function ZeroDopamineHeader({ className }: { className?: string }) {
         className
       )}
     >
-      <h1 className="text-xl font-light tracking-wide">zero dopamine</h1>
+      <h1 className="text-xl font-light tracking-wide"><Link href="/">zero dopamine</Link></h1>
       <div className="flex items-center gap-2 text-sm bg-zinc-900 px-3 py-1 rounded-full shadow-sm">
         <Timer className="h-4 w-4 text-red-500" />
         <span className="tabular-nums font-mono">{formatted}</span>
