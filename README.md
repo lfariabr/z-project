@@ -27,8 +27,7 @@ It serves one mission: deliver cold, hard motivation in the voice of your inner 
 | Database     | MongoDB + Mongoose                     |
 | Auth         | JWT + Email Magic Link (planned)       |
 | Email        | Resend (for motivational emails)       |
-| Payments     | Stripe (subscription & webhook logic)  |
-| Infra        | Docker, Vercel (FE), Railway/Render (BE) |
+| Infra        | Docker |
 | Scheduler    | Cron Jobs / Agenda (for queued sends)  |
 
 ---
@@ -38,7 +37,6 @@ It serves one mission: deliver cold, hard motivation in the voice of your inner 
 ### ✅ Done (v1.x - Frontend)
 - [x] Countdown & modal with surprise quote
 - [x] Explicit mode toggle
-- [x] Email input + delivery
 - [x] Gritty dark UI
 - [x] Schema setup (User, Quote, DeliveryLog)
 - [x] MongoDB + GraphQL backend
@@ -46,14 +44,8 @@ It serves one mission: deliver cold, hard motivation in the voice of your inner 
 
 ### TO BE DONE
 - [ ] Auth via email magic link or OTP
-- [ ] make the component exist on frontend to send the quote to the user
-- [ ] the component should be able to be used on the browser of the user (either an extension of even an executable app)
 - [ ] Logged-in dashboard with quote history
-- [ ] Stripe customer portal
 - [ ] Delivery scheduler engine
-- [ ] Goggins Tracker: add weekly goals
-- [ ] AI Coach Mode
-- [ ] Stats and accountability loop
 
 ---
 
@@ -61,8 +53,8 @@ It serves one mission: deliver cold, hard motivation in the voice of your inner 
 
 ### 1. Clone + Setup
 ```bash
-git clone https://github.com/yourusername/goggins-mode.git
-cd goggins-mode
+git clone https://github.com/lfariabr/z-project.git
+cd z-project
 ```
 
 ### 2. Install Dependencies
@@ -79,10 +71,9 @@ npm install
 #### `.env` for Backend:
 ```env
 PORT=4000
-MONGO_URI=mongodb://localhost:27017/goggins
+MONGO_URI=mongodb://localhost:27017/zproject
 JWT_SECRET=super-secret-key
 RESEND_API_KEY=your-api-key
-STRIPE_SECRET_KEY=your-secret-key
 ```
 
 #### `.env.local` for Frontend:
@@ -128,13 +119,6 @@ npm run dev
 
 This app is inspired by the no-excuses attitude of **David Goggins**.  
 It’s designed to cut through the noise, hold users accountable, and help them take action every damn day.
-
----
-
-## Quote of the Day 🧨
-
-> *"You don’t know me, son!"*  
-— Your inner savage.
 
 ---
 
