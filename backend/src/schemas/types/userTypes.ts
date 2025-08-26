@@ -23,4 +23,8 @@ extend type Query {
 extend type Mutation {
   registerUser(input: RegisterInput!): User
 }
+
+extend type Subscription {
+  userCreated: User!
+}
 `;

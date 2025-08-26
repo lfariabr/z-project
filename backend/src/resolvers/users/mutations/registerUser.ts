@@ -1,4 +1,5 @@
 import User from '../../../models/User.js';
+import { pubsub, USER_CREATED } from '../../utils/pubsub.js'
 
 type RegisterInput = {
   email: string;
@@ -23,6 +24,8 @@ export const registerUser = async (
     existing.subscribed = true;
     if (input.name) existing.name = input.name;
     await existing.save();
+    // Optional: also publish on updates
+    await pubsub.publish(USER_CREATED, { userCreated: existing });
     return existing;
   }
 
@@ -33,5 +36,6 @@ export const registerUser = async (
     subscribed: true,
   });
   await user.save();
+  await pubsub.publish(USER_CREATED, { userCreated: user });
   return user;
 };

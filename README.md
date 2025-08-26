@@ -1,13 +1,13 @@
 # Zero Dopamine
 
-> A no-BS motivational SaaS app that delivers raw, discipline-first messages to help you fight dopamine addiction and **get after it**.  
+> A no-BS motivational app that delivers raw, discipline-first content to help you fight dopamine addiction and **get after it**.  
 Delivered via web and email. Gritty. Unfiltered. Built for serious doers.
 
 ---
 
 ## Project Overview
 
-**Goggins Mode** is a full-stack SaaS built with the MERN stack + Stripe + Resend integration.  
+**Goggins Mode** is a full-stack app built with the MERN stack + Resend integration.  
 It serves one mission: deliver cold, hard motivation in the voice of your inner savage — *no hype, no fluff*.
 
 - 🕒 Daily/weekly/monthly motivational quotes
