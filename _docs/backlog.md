@@ -3,12 +3,12 @@
 ## IN PROGRESS
 ### **0.11.0** - `Go Live`
 - [X] Buy domain name: zerodopamine.com
+- [X] Create 1x TY for sub email
+- [X] Create 1x Week 1 content email
 - [ ] Configure hosting (trying AWS)
 - [ ] Configure nginx
 - [ ] Configure SSL
 - [ ] Configure certbot
-- [X] Create 1x TY for sub email
-- [X] Create 1x Week 1 content email
 
 ## BACKLOG
 - Plug in Resend for triggering
