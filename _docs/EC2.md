@@ -57,11 +57,11 @@ cd /var/www/zerodopamine
 # Cloning the repo
 git clone https://github.com/lfariabr/z-project.git .
 
---- we're here --- 
-
 # Running the docker container
 docker compose up -d --build
 docker compose logs -f db backend frontend
+
+---
 
 # Deploy sequence (server)
 ## go to deploy dir

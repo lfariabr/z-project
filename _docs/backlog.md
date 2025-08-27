@@ -9,9 +9,55 @@
 - [X] Infra point DNS to EC2 Elastic IP
 - [X] Configure mongoDB cluster and connect to backend .env
 - [X] Update docker-compose.yml for production
-- [ ] Configure nginx
-- [ ] Configure SSL
-- [ ] Configure certbot
+- [X] Configure nginx
+    # 1 Ensure dirs exist
+    `sudo mkdir -p /etc/nginx/sites-available /etc/nginx/sites-enabled`
+
+    # 2 Copy your site config into place
+    `sudo cp /var/www/zerodopamine/etc/nginx/sites-available/zerodopamine.conf /etc/nginx/sites-available/zerodopamine.conf`
+
+    # 3 Enable your site and remove default
+    `sudo ln -sf /etc/nginx/sites-available/zerodopamine.conf /etc/nginx/sites-enabled/zerodopamine.conf`
+    `sudo rm -f /etc/nginx/sites-enabled/default`
+
+    # 4 Validate and reload
+    `sudo nginx -t`
+    `sudo systemctl reload nginx`
+
+    # Verify containers are up and listening on the host:
+    `docker compose ps`
+    `ss -ltnp | egrep ':80|:3000|:4000'`
+
+    # Test
+    `curl -I http://zerodopamine.com
+    curl -s -X POST http://zerodopamine.com/api/graphql \
+    -H 'Content-Type: application/json' \
+    -d '{"query":"{ __typename }"}'`
+- [X] Configure SSL and Configure certbot
+    `sudo apt-get update`
+    `sudo apt-get install -y certbot python3-certbot-nginx`
+
+    # Issue certs + enable HTTPS redirect and HSTS
+    `sudo certbot --nginx \
+    -d zerodopamine.com -d www.zerodopamine.com \
+    --redirect --hsts --staple-ocsp \
+    -m lfariaus@gmail.com --agree-tos -n`
+
+    # Verify renewal works
+    `sudo certbot renew --dry-run`
+
+    # Validate and reload
+    `sudo nginx -t`
+    `sudo systemctl reload nginx`
+
+    # Test HTTPs
+    `curl -I https://zerodopamine.com`
+    curl -s -X POST https://zerodopamine.com/api/graphql \
+    -H 'Content-Type: application/json' \
+    -d '{"query":"{ __typename }"}'`
+
+    # Confirm Renewal Timer
+    `systemctl status certbot.timer`
 
 ## BACKLOG
 - Plug in Resend for triggering
