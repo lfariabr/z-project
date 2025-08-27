@@ -18,7 +18,7 @@ interface Config {
 const requiredEnvVars = [
   'PORT',
   'NODE_ENV',
-  'MONGODB_URI',
+  'MONGO_URI',
   'JWT_SECRET',
   'REDIS_URL',
   'OPENAI_API_KEY',
@@ -34,7 +34,7 @@ if (missingEnvVars.length > 0) {
 const config: Config = {
     port: parseInt(process.env.PORT || '4000', 10),
     nodeEnv: process.env.NODE_ENV || 'development',
-    mongodbUri: process.env.MONGODB_URI || '',
+    mongodbUri: process.env.MONGO_URI || '',
     jwtSecret: process.env.JWT_SECRET || '',
     redisUrl: process.env.REDIS_URL || '',
     rateLimitWindow: parseInt(process.env.RATE_LIMIT_WINDOW || '60', 10),

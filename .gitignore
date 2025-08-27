@@ -1,1 +1,4 @@
 zd-keypair.pem
+backend/.env
+backend/.env.*
+!backend/.env.example

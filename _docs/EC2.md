@@ -63,4 +63,17 @@ git clone https://github.com/lfariabr/z-project.git .
 docker compose up -d --build
 docker compose logs -f db backend frontend
 
+# Deploy sequence (server)
+## go to deploy dir
+cd /var/www/zerodopamine
 
+## pull latest
+git pull --ff-only
+
+## rebuild + start
+docker compose build
+docker compose up -d
+
+## check
+docker compose ps
+docker compose logs -f --tail 100

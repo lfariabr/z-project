@@ -5,7 +5,10 @@
 - [X] Buy domain name: zerodopamine.com
 - [X] Create 1x TY for sub email
 - [X] Create 1x Week 1 content email
-- [ ] Configure hosting (trying AWS)
+- [X] Configure hosting (EC2 + Docker)
+- [X] Infra point DNS to EC2 Elastic IP
+- [X] Configure mongoDB cluster and connect to backend .env
+- [X] Update docker-compose.yml for production
 - [ ] Configure nginx
 - [ ] Configure SSL
 - [ ] Configure certbot
