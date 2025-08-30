@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getAllPostSlugs, readPostSource } from "@/lib/posts";
 import { renderMdx } from "@/lib/mdx";
 import Footer from '@/components/Footer'
+import { Metadata } from "next";
 
 export async function generateStaticParams() {
   return getAllPostSlugs().map((slug) => ({ slug }));
@@ -15,6 +16,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
     const mdx = await renderMdx(content);
 
     return (
+      <>
       <div className="mx-auto max-w-3xl px-6 py-12 text-gray-100">
         <header className="mb-10">
           <h1 className="text-3xl font-extrabold tracking-tight text-white">
@@ -31,6 +33,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
         
         <Footer center/>
       </div>
+      </>
     );
   } catch {
     notFound();
