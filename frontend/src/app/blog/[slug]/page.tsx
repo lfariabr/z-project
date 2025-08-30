@@ -15,12 +15,20 @@ export default async function PostPage({ params }: { params: { slug: string } })
     const mdx = await renderMdx(content);
 
     return (
-      <div>
-        <article className="prose prose-neutral mx-auto max-w-3xl p-6">
-          <h1 className="mb-2 text-3xl font-semibold">{meta.title}</h1>
-          <p className="-mt-2 text-sm opacity-60">{new Date(meta.date).toLocaleDateString()}</p>
+      <div className="mx-auto max-w-3xl px-6 py-12 text-gray-100">
+        <header className="mb-10">
+          <h1 className="text-3xl font-extrabold tracking-tight text-white">
+            {meta.title}
+          </h1>
+          <p className="mt-3 text-sm text-gray-400">
+            {new Date(meta.date).toLocaleDateString()}
+          </p>
+        </header>
+        
+        <article className="prose prose-invert max-w-none">
           {mdx}
         </article>
+        
         <Footer center/>
       </div>
     );
