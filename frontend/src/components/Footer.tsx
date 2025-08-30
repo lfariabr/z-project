@@ -6,9 +6,14 @@ export default function Footer({ center = false }: { center?: boolean }) {
     <div className={
       `mt-10 text-xs text-gray-500 flex items-center flex-wrap gap-1 ${center ? 'justify-center w-full text-center' : ''}`
     }>
+      <span className="mx-2">•</span>
       <Link href="/about" className="hover:text-gray-300 cursor-pointer">About</Link>
       <span className="mx-2">•</span>
-      <a
+
+      <Link href="/blog" className="hover:text-gray-300 cursor-pointer">Blog</Link>
+      <span className="mx-2">•</span>
+      {/* Removing possible partnership that I tried selling to */}
+      {/* <a
         href="https://www.instagram.com/zerodopamine_motivation/"
         target="_blank"
         rel="noopener noreferrer"
@@ -24,7 +29,7 @@ export default function Footer({ center = false }: { center?: boolean }) {
         className="hover:text-gray-300"
       >
         YouTube
-      </a>
+      </a> */}
     </div>
   )
 }

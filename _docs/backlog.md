@@ -1,6 +1,17 @@
 # BACKLOG
 
 ## IN PROGRESS
+
+### **0.12.0** - `Blog`
+- [X] Do a research, found 3 options: MDX, Headless CMS (Strapi or Sanity) or Static Site Generator with Markdown
+- [X] Select MDX and set it up
+- [X] Install packages 
+`npm i gray-matter next-mdx-remote`
+`npm i -D @tailwindcss/typography`
+- [ ] Enable typography plugin 
+- [ ] 
+
+
 ### **0.11.0** - `Go Live`
 - [X] Buy domain name: zerodopamine.com
 - [X] Create 1x TY for sub email
@@ -107,3 +118,11 @@
 ### **0.10.0** - `FE About Page V2`
 - Update About page to talk a bit more about the project
 - Adds in Subscribe button
+
+### **0.11.0** - `Go Live`
+- Buy domain name: zerodopamine.com
+- Configure hosting (EC2 + Docker)
+- Configure mongoDB cluster and connect to backend .env
+- Configure nginx
+- Configure SSL and Configure certbot
+- Configure email sending
