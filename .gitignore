@@ -2,4 +2,4 @@ zd-keypair.pem
 backend/.env
 backend/.env.*
 !backend/.env.example
-node_modules/
+node_modules/node_modules/
