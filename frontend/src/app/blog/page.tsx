@@ -12,17 +12,27 @@ export default async function BlogIndex() {
 
   return (
     <div className="mx-auto max-w-3xl space-y-4 p-6">
-      <h1 className="text-3xl font-semibold">ZD's Blog</h1>
+      <h1 className="text-3xl font-semibold text-white">ZD's Blog</h1>
       <div className="grid gap-4">
         {posts.map((p) => (
           <Link key={p.slug} href={`/blog/${p.slug}`}>
-            <Card className="transition hover:shadow-md">
+            <Card className="bg-gray-800/80 border-gray-700 transition hover:shadow-lg hover:bg-gray-800/90 backdrop-blur-sm">
               <CardHeader>
-                <CardTitle className="text-xl">{p.title}</CardTitle>
+                <CardTitle className="text-xl text-white">{p.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">{p.description}</p>
-                <p className="mt-2 text-xs opacity-70">{new Date(p.date).toLocaleDateString()}</p>
+                <p className="text-gray-300">{p.description}</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {p.tags && p.tags.map((tag) => (
+                    <span 
+                      key={tag}
+                      className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-700/60 text-gray-200 border border-gray-600/50"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <p className="mt-3 text-xs text-gray-400">{new Date(p.date).toLocaleDateString()}</p>
               </CardContent>
             </Card>
           </Link>
