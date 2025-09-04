@@ -12,7 +12,8 @@ export default async function BlogIndex() {
 
   return (
     <div className="mx-auto max-w-3xl space-y-4 p-6">
-      <h1 className="text-3xl font-semibold text-white">ZD's Blog</h1>
+      <h1 className="text-3xl font-semibold text-white">Zero Dopamine's Blog</h1>
+      <p className="text-gray-300">The antidote to comfort culture: raw discipline in written form.</p>
       <div className="grid gap-4">
         {posts.map((p) => (
           <Link key={p.slug} href={`/blog/${p.slug}`}>
