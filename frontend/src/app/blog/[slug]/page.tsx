@@ -30,8 +30,6 @@ export default async function PostPage({ params }: { params: { slug: string } })
         <article className="prose prose-invert max-w-none">
           {mdx}
         </article>
-        
-        <Footer center/>
       </div>
       </>
     );

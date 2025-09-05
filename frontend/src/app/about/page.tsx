@@ -144,7 +144,6 @@ export default function About() {
         </Link>
       </div>
       </section>
-      <Footer center />
     </div>
   )
 }

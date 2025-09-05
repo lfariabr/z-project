@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import {ZeroDopamineHeader} from "@/components/layout/ZeroDopamineHeader";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
         <main className="flex min-h-screen flex-col items-center justify-start">
           <ZeroDopamineHeader />
           {children}
+          <Footer />
         </main>
       </body>
     </html>
