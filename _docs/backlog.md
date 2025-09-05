@@ -129,3 +129,10 @@ __execution__
 - [X] Added blog page with `getAllPostsMeta` query
 - [X] Added blog post page using next routes `[slug]`
 
+### **0.13.0** - `Email`
+- [X] Create Resend account
+- [X] Generate Resend API Key
+- [X] Add Resend records to zerodopamine.com 
+- [X] Configure Resend in backend at src/services/resend.ts
+- [X] Run some tests by calling the function `SendTySubEmail`. All good
+- [ ] Integrate this function into the subscription process @ home page
