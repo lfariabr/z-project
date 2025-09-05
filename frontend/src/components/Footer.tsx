@@ -43,7 +43,7 @@ export default function Footer({ center = false }: { center?: boolean }) {
 
   // Additional useful links that align with the Zero Dopamine mission
   const resourceLinks = [
-    { href: '/privacy', label: 'Privacy Policy' },
+    // { href: '/privacy', label: 'Privacy Policy' },
     { href: '/terms', label: 'Terms of Service' },
     // { href: '/contact', label: 'Contact' },
     // { href: '/faq', label: 'FAQ' },

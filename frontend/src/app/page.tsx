@@ -138,9 +138,6 @@ export default function HomePage() {
       {message && (
         <p className="mt-4 text-sm text-gray-300">{message}</p>
       )}
-
-      {/* Tiny footer */}
-      <Footer />
     </main>
   )
 }
