@@ -135,4 +135,5 @@ __execution__
 - [X] Add Resend records to zerodopamine.com 
 - [X] Configure Resend in backend at src/services/resend.ts
 - [X] Run some tests by calling the function `SendTySubEmail`. All good
-- [ ] Integrate this function into the subscription process @ home page
+- [X] Integrate this function into the subscription process @ home page
+- [ ] Query email to check if user is subscribed, if so, ignore the TY email

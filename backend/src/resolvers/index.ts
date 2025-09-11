@@ -1,4 +1,5 @@
 import Users from './users/index.js'
+import Email from './email/index.js'
 
 export default {
   Query: {
@@ -6,6 +7,7 @@ export default {
   },
   Mutation: {
     ...Users.Mutation,
+    ...Email.Mutation,
   },
   Subscription: {
     ...Users.Subscription,

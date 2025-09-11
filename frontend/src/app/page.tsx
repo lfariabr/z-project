@@ -6,21 +6,11 @@ import { Button } from '@/components/ui/button'
 import { Switch } from '@/components/ui/switch'
 import { Label } from '@/components/ui/label'
 import CountdownCircle from "@/components/CountdownCircle";
-import { graphqlRequest } from '@/lib/graphql'
-import Footer from '@/components/Footer'
 
-const REGISTER_USER_MUTATION = `#graphql
-  mutation RegisterUser($input: RegisterInput!) {
-    registerUser(input: $input) {
-      _id
-      email
-      name
-      isExplicit
-      subscribed
-      createdAt
-    }
-  }
-`;
+// Plugs into backend
+import { graphqlRequest } from '@/lib/graphql'
+import { REGISTER_USER_MUTATION } from '@/lib/hooks/registerUser'
+import { SEND_WELCOME_EMAIL_MUTATION } from '@/lib/hooks/sendWelcomeEmail'
 
 export default function HomePage() {
   const [email, setEmail] = useState('')
@@ -61,6 +51,23 @@ export default function HomePage() {
       if (data?.registerUser?._id) {
         setMessage('You’re in. We’ll nudge you soon.')
         setRegistered(true)
+        console.log('User registered:', data.registerUser._id)
+        
+        // Send welcome email via GraphQL
+        try {
+          const emailResult = await graphqlRequest<{ sendWelcomeEmail: { success: boolean, error?: string } }>(
+            SEND_WELCOME_EMAIL_MUTATION, 
+            { input: { to: email } }
+          )
+          if (emailResult?.sendWelcomeEmail?.success) {
+            console.log('Welcome email sent to', email)
+          } else {
+            console.warn('Failed to send welcome email:', emailResult?.sendWelcomeEmail?.error)
+          }
+        } catch (emailErr) {
+          console.warn('Error sending welcome email:', emailErr)
+        }
+        
         // Light haptic feedback on success (supported on some devices)
         if (typeof window !== 'undefined' && 'vibrate' in navigator) {
           try { (navigator as any).vibrate?.(20) } catch {}
