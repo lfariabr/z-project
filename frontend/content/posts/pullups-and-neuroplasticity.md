@@ -12,7 +12,7 @@ Bullshit.
 
 This may last a day or two, but it will not be wired into you long-term.
 
-Real change happens when we drag our asses under the bar, when our body screams **enough** and we say, **not today**. 
+Real change happens when we drag our asses under the bar, when our gibody screams **enough** and we say, **not today**. 
 
 This is precisely why I'm writing the content below, preaching about the importance of self-imposed suffering, on my case, doing pull-ups!
 
